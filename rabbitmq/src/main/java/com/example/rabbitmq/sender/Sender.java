@@ -31,6 +31,24 @@ public class Sender {
         }
         Thread.sleep(5000);
     }
+    /*订阅模型-Direct (路由模式)*/
+    public void direct() throws InterruptedException {
+        String msg = "路由模式";
+        for (int i = 0; i < 10; i++) {
+            amqpTemplate.convertAndSend("spring.direct.exchange", "direct", msg + i);
+        }
+        Thread.sleep(5000);
+    }
+    /* 订阅模型-Topic (主题模式)*/
+    public void topic() throws InterruptedException {
+        amqpTemplate.convertAndSend("spring.topic.exchange", "person.insert", "增加人员");
+        amqpTemplate.convertAndSend("spring.topic.exchange", "person.delete", "删除人员");
+        amqpTemplate.convertAndSend("spring.topic.exchange", "money.insert", "加钱");
+        amqpTemplate.convertAndSend("spring.topic.exchange", "money.delete", "减钱");
+        Thread.sleep(5000);
+    }
+
+
 
 }
 

@@ -25,5 +25,13 @@ public class RabbitMQController {
         }
         return "success";
     }
-
+    @GetMapping("hello/direct")
+    public String direct(){
+        try {
+            sender.direct();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "success";
+    }
 }
